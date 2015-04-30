@@ -1,15 +1,13 @@
 package dao;
 
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import exceptions.ConnectionErrorException;
 import model.Camara;
+import exceptions.ConnectionErrorException;
 
 public class DaoScada {
 	private java.sql.Connection con = null;
