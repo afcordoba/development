@@ -51,7 +51,7 @@ public class DaoScadaTest {
 	public void should_retrieve_secadoras_from_WS() throws ClassNotFoundException, SQLException {
 		
 		ScadaBWS ws = new ScadaBWS();
-		assertEquals(false, ws.getRegistrosPorSecadoraPorFecha("Camara_2", "01/01/1999").isEmpty());
+		assertEquals(false, ws.getRegistrosPorSecadoraPorFecha("Camara_2", "31/12/1998").isEmpty());
 	}
 	@Test
 	public void should_retrieve_one_secadoras_from_WS() throws ClassNotFoundException, SQLException {

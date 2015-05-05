@@ -75,7 +75,7 @@ public class DaoScada {
         List<Camara> registros = new ArrayList<Camara>();
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         con = this.getConnection();
-        String query = "SELECT  VarName,TimeString ,VarValue from " + nombreTabla + " where convert(datetime,TimeString, 103) >= Cast('" + fecha + "' as datetime)";
+        String query = "SELECT  VarName,TimeString ,VarValue from " + nombreTabla + " where convert(datetime,TimeString, 103) >= convert(datetime,'" + fecha + "' ,103)";
         con = this.getConnection();
         if (con != null) {
             ps = null;
