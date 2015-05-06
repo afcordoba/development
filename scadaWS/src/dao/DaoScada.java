@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import util.FileReaderConfiguration;
 import model.Camara;
 import exceptions.ConnectionErrorException;
 
@@ -15,10 +16,12 @@ public class DaoScada {
     private static DaoScada connect;
     java.sql.ResultSet rs = null;
     PreparedStatement ps = null;
+    static FileReaderConfiguration readerConfiguration = null;
 
     public static DaoScada getInstance() {
         if (connect == null) {
             connect = new DaoScada();
+            readerConfiguration = new FileReaderConfiguration();
         }
         return connect;
     }
@@ -42,13 +45,13 @@ public class DaoScada {
             System.out.println("Informacion del controlador");
             System.out.println("Nombre del controlador: " + dm.getDriverName());
             System.out.println("Version del controlador: " + dm.getDriverVersion());
-            System.out.println("\nInformaci�n de la base de datos ");
+            System.out.println("\nInformacion de la base de datos ");
             System.out.println("\tNombre de la base de datos: " + dm.getDatabaseProductName());
-            System.out.println("\tVersi�n de la base de datos: " + dm.getDatabaseProductVersion());
+            System.out.println("\tVersion de la base de datos: " + dm.getDatabaseProductVersion());
             System.out.println("Catalogos disponibles ");
             rs = dm.getCatalogs();
             while (rs.next()) {
-                System.out.println("\tcat�logo: " + rs.getString(1));
+                System.out.println("\tcatalogo: " + rs.getString(1));
             }
             closeConnection();
         }
@@ -70,9 +73,20 @@ public class DaoScada {
         }
 
     }
-
-    public List<Camara> getInformacionDeCamara(String nombreTabla, String fecha) throws ClassNotFoundException, SQLException {
-        List<Camara> registros = new ArrayList<Camara>();
+  
+    public List<Camara> getInformacionDeCamara(String user, String password, String nombreTabla, String fecha) throws ClassNotFoundException, SQLException {
+        if(!(readerConfiguration.getUser().equals(user)) || (!readerConfiguration.getPassword().equals(password))){
+        	List<Camara> messages = new ArrayList<Camara>();
+        	String error = "User o Password incorrectos, verifique sus parametros";
+        	Camara camara = new Camara();
+            camara.setTimeString("User o Password incorrectos, verifique sus parametros");
+            camara.setVarName("User o Password incorrectos, verifique sus parametros");
+            camara.setVarValue("User o Password incorrectos, verifique sus parametros");
+        	messages.add(camara);
+        	return messages;
+        }
+    	
+    	List<Camara> registros = new ArrayList<Camara>();
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         con = this.getConnection();
         String query = "SELECT  VarName,TimeString ,VarValue from " + nombreTabla + " where convert(datetime,TimeString, 103) >= convert(datetime,'" + fecha + "' ,103)";

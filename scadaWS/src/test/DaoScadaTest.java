@@ -3,6 +3,7 @@ package test;
 import static org.junit.Assert.*;
 
 import java.sql.SQLException;
+import java.util.Iterator;
 import java.util.List;
 
 import model.Camara;
@@ -20,17 +21,13 @@ public class DaoScadaTest {
 		DaoScada dao = DaoScada.getInstance();
 		String nombreTabla = "Camara_2";
 		String fecha = "01/01/1999";
-		List<Camara> camaras = dao.getInformacionDeCamara(nombreTabla,fecha);
+		List<Camara> camaras = dao.getInformacionDeCamara("SCADA","Secadoras2015",nombreTabla,fecha);
 		for (Camara camara : camaras) {
-			System.out.println(camara.getVarName().trim()+"," + camara.getVarValue().trim()+"," + camara.getTimeString());
+			System.out.println(camara.getVarName()+ "," + camara.getTimeString()+","+camara.getVarValue() );
 		}
 		assertEquals(false, camaras.isEmpty());
 	}
-	/*@Test(expected=ConnectionErrorException.class)
-	public void should_get_an_exception_when_it_cant_get_conection() throws Exception {
-		DaoScada dao = DaoScada.getInstance();
-		dao.getConnection();
-	}*/
+	
 	@Test
 	public void should_get_a_Connection() throws Exception {
 		DaoScada dao = DaoScada.getInstance();
@@ -51,12 +48,22 @@ public class DaoScadaTest {
 	public void should_retrieve_secadoras_from_WS() throws ClassNotFoundException, SQLException {
 		
 		ScadaBWS ws = new ScadaBWS();
-		assertEquals(false, ws.getRegistrosPorSecadoraPorFecha("Camara_2", "31/12/1998").isEmpty());
+		assertEquals(false, ws.getRegistrosPorSecadoraPorFecha("SCADA","Secadoras2015","Camara_2", "31/12/1998").isEmpty());
 	}
 	@Test
 	public void should_retrieve_one_secadoras_from_WS() throws ClassNotFoundException, SQLException {
 		
 		ScadaBWS ws = new ScadaBWS();
-		assertEquals(1, ws.getRegistrosPorSecadoraPorFecha("Camara_2", "01/01/2016").size());
+		assertEquals(1, ws.getRegistrosPorSecadoraPorFecha("SCADA","Secadoras2015","Camara_2", "01/01/2016").size());
+	}
+	@Test
+	public void should_retrieve_error_login_to_WS() throws ClassNotFoundException, SQLException {
+		
+		DaoScada dao = DaoScada.getInstance();
+		String nombreTabla = "Camara_2";
+		String fecha = "01/01/1999";
+		List<Camara> camaras = dao.getInformacionDeCamara("SCADA","Secadoras",nombreTabla,fecha);
+		Camara c = camaras.get(0);
+		assertEquals("User o Password incorrectos, verifique sus parametros", c.getVarValue());
 	}
 }
