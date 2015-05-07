@@ -74,8 +74,8 @@ public class DaoScada {
 
     }
   
-    public List<Camara> getInformacionDeCamara(String user, String password, String nombreTabla, String fecha) throws ClassNotFoundException, SQLException {
-        if(!(readerConfiguration.getUser().equals(user)) || (!readerConfiguration.getPassword().equals(password))){
+    public List<Camara> getInformacionDeCamara(String user, String password, String nombreTabla, String fecha){ 
+    if(!(readerConfiguration.getUser().equals(user)) || (!readerConfiguration.getPassword().equals(password))){
         	List<Camara> messages = new ArrayList<Camara>();
         	String error = "User o Password incorrectos, verifique sus parametros";
         	Camara camara = new Camara();
@@ -88,21 +88,49 @@ public class DaoScada {
     	
     	List<Camara> registros = new ArrayList<Camara>();
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        con = this.getConnection();
+        try {
+			con = this.getConnection();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         String query = "SELECT  VarName,TimeString ,VarValue from " + nombreTabla + " where convert(datetime,TimeString, 103) >= convert(datetime,'" + fecha + "' ,103)";
-        con = this.getConnection();
+        try {
+			con = this.getConnection();
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         if (con != null) {
             ps = null;
             rs = null;
-            ps = con.prepareStatement(query);
-            rs = ps.executeQuery();
-            while (rs.next()) {
-                Camara camara = new Camara();
-                camara.setTimeString(rs.getString("TimeString"));
-                camara.setVarName(rs.getString("VarName"));
-                camara.setVarValue(rs.getString("VarValue"));
-                registros.add(camara);
-            }
+            try {
+				ps = con.prepareStatement(query);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+            try {
+				rs = ps.executeQuery();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+            try {
+				while (rs.next()) {
+				    Camara camara = new Camara();
+				    camara.setTimeString(rs.getString("TimeString"));
+				    camara.setVarName(rs.getString("VarName"));
+				    camara.setVarValue(rs.getString("VarValue"));
+				    registros.add(camara);
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
             if(registros.size()== 0){
             	Camara camara = new Camara();
                 camara.setTimeString("No hay registro en esa fecha");
@@ -115,7 +143,12 @@ public class DaoScada {
         	new ConnectionErrorException();
         }
 
-        this.closeConnection();
+        try {
+			this.closeConnection();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         return registros;
     }
 

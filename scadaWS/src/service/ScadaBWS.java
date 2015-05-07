@@ -1,10 +1,9 @@
 package service;
 
-import java.sql.SQLException;
 import java.util.List;
 
-import dao.DaoScada;
 import model.Camara;
+import dao.DaoScada;
 
 public class ScadaBWS {
 	/**
@@ -15,7 +14,7 @@ public class ScadaBWS {
      * @throws java.lang.ClassNotFoundException
      * @throws java.sql.SQLException
      */
-	public List<Camara> getRegistrosPorSecadoraPorFecha(String user , String password, String nombreTabla, String fecha) throws ClassNotFoundException, SQLException {
+	public List<Camara> getRegistrosPorSecadoraPorFecha(String user , String password, String nombreTabla, String fecha)  {
         DaoScada dao = DaoScada.getInstance();
         List<Camara> camaras = dao.getInformacionDeCamara(user, password, nombreTabla, fecha);
         for (Camara camara : camaras) {
