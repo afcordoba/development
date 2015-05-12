@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions targetNamespace="urn:sap-com:document:sap:soap:functions:mc-style" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="urn:sap-com:document:sap:soap:functions:mc-style" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:n1="urn:sap-com:document:sap:rfc:functions">
+ <wsdl:documentation>
+  <sidl:sidl xmlns:sidl="http://www.sap.com/2007/03/sidl"/>
+ </wsdl:documentation>
+ <wsdl:types>
+  <xsd:schema attributeFormDefault="qualified" targetNamespace="urn:sap-com:document:sap:rfc:functions" xmlns:n0="urn:sap-com:document:sap:soap:functions:mc-style">
+   <xsd:import namespace="urn:sap-com:document:sap:soap:functions:mc-style"/>
+   <xsd:simpleType name="char1">
+    <xsd:restriction base="xsd:string">
+     <xsd:maxLength value="1"/>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="char10">
+    <xsd:restriction base="xsd:string">
+     <xsd:maxLength value="10"/>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="char12">
+    <xsd:restriction base="xsd:string">
+     <xsd:maxLength value="12"/>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="char18">
+    <xsd:restriction base="xsd:string">
+     <xsd:maxLength value="18"/>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="char2">
+    <xsd:restriction base="xsd:string">
+     <xsd:maxLength value="2"/>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="char20">
+    <xsd:restriction base="xsd:string">
+     <xsd:maxLength value="20"/>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="char220">
+    <xsd:restriction base="xsd:string">
+     <xsd:maxLength value="220"/>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="char28">
+    <xsd:restriction base="xsd:string">
+     <xsd:maxLength value="28"/>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="char3">
+    <xsd:restriction base="xsd:string">
+     <xsd:maxLength value="3"/>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="char30">
+    <xsd:restriction base="xsd:string">
+     <xsd:maxLength value="30"/>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="char32">
+    <xsd:restriction base="xsd:string">
+     <xsd:maxLength value="32"/>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="char4">
+    <xsd:restriction base="xsd:string">
+     <xsd:maxLength value="4"/>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="char50">
+    <xsd:restriction base="xsd:string">
+     <xsd:maxLength value="50"/>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="cuky5">
+    <xsd:restriction base="xsd:string">
+     <xsd:maxLength value="5"/>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="curr11.2">
+    <xsd:restriction base="xsd:decimal">
+     <xsd:totalDigits value="11"/>
+     <xsd:fractionDigits value="2"/>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="date10">
+    <xsd:restriction base="xsd:string">
+     <xsd:maxLength value="10"/>
+     <xsd:pattern value="\d\d\d\d-\d\d-\d\d"/>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="decimal5.0">
+    <xsd:restriction base="xsd:decimal">
+     <xsd:totalDigits value="5"/>
+     <xsd:fractionDigits value="0"/>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="numeric3">
+    <xsd:restriction base="xsd:string">
+     <xsd:maxLength value="3"/>
+     <xsd:pattern value="\d*"/>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="numeric6">
+    <xsd:restriction base="xsd:string">
+     <xsd:maxLength value="6"/>
+     <xsd:pattern value="\d*"/>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="quantum15.3">
+    <xsd:restriction base="xsd:decimal">
+     <xsd:totalDigits value="15"/>
+     <xsd:fractionDigits value="3"/>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="unit3">
+    <xsd:restriction base="xsd:string">
+     <xsd:maxLength value="3"/>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:complexType name="ZSSD_PEDIDO_POS">
+    <xsd:sequence>
+     <xsd:element name="ZZPOSSF" type="n1:char18"/>
+     <xsd:element name="VGPOS" type="n1:numeric6"/>
+     <xsd:element name="WERKS" type="n1:char4"/>
+     <xsd:element name="MATNR" type="n0:char18"/>
+     <xsd:element name="KWMENG" type="n1:quantum15.3"/>
+     <xsd:element name="VRKME" type="n1:unit3"/>
+     <xsd:element name="AUFNR" type="n1:char12"/>
+     <xsd:element name="MVGR1" type="n1:char3"/>
+     <xsd:element name="MVGR2" type="n0:char3"/>
+     <xsd:element name="CFOP" type="n0:char10"/>
+     <xsd:element name="BSTKD_E" type="n0:char35"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="ZSSD_PEDIDO_POS_TAB">
+    <xsd:sequence>
+     <xsd:element name="item" type="n1:ZSSD_PEDIDO_POS" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+   </xsd:complexType>
+  </xsd:schema>
+  <xsd:schema attributeFormDefault="qualified" targetNamespace="urn:sap-com:document:sap:soap:functions:mc-style" xmlns:n0="urn:sap-com:document:sap:rfc:functions">
+   <xsd:import namespace="urn:sap-com:document:sap:rfc:functions"/>
+   <xsd:simpleType name="char10">
+    <xsd:restriction base="xsd:string">
+     <xsd:maxLength value="10"/>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="char18">
+    <xsd:restriction base="xsd:string">
+     <xsd:maxLength value="18"/>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="char2">
+    <xsd:restriction base="xsd:string">
+     <xsd:maxLength value="2"/>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="char3">
+    <xsd:restriction base="xsd:string">
+     <xsd:maxLength value="3"/>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="char35">
+    <xsd:restriction base="xsd:string">
+     <xsd:maxLength value="35"/>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="char7">
+    <xsd:restriction base="xsd:string">
+     <xsd:maxLength value="7"/>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="date10">
+    <xsd:restriction base="xsd:string">
+     <xsd:maxLength value="10"/>
+     <xsd:pattern value="\d\d\d\d-\d\d-\d\d"/>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:complexType name="ZssdPedidoCab">
+    <xsd:sequence>
+     <xsd:element name="ZZNROSF" type="n0:char18"/>
+     <xsd:element name="ZZIDSF" type="tns:char18"/>
+     <xsd:element name="VGBEL" type="n0:char10"/>
+     <xsd:element name="AUART" type="n0:char4"/>
+     <xsd:element name="VKORG" type="n0:char4"/>
+     <xsd:element name="VTWEG" type="n0:char2"/>
+     <xsd:element name="SPART" type="n0:char2"/>
+     <xsd:element name="KUNAG" type="n0:char10"/>
+     <xsd:element name="KUNWE" type="n0:char10"/>
+     <xsd:element name="KUNRG" type="n0:char10"/>
+     <xsd:element name="KUNRE" type="n0:char10"/>
+     <xsd:element name="KUNZD" type="n0:char10"/>
+     <xsd:element name="AUDAT" type="n0:date10"/>
+     <xsd:element name="VALDT" type="n0:date10"/>
+     <xsd:element name="VDATU" type="tns:date10"/>
+     <xsd:element name="ZTERM" type="n0:char4"/>
+     <xsd:element name="INCO1" type="n0:char3"/>
+     <xsd:element name="INCO2" type="n0:char28"/>
+     <xsd:element name="WAERK" type="n0:cuky5"/>
+     <xsd:element name="VKBUR" type="n0:char4"/>
+     <xsd:element name="VKGRP" type="n0:char3"/>
+     <xsd:element name="FAKSK" type="n0:char2"/>
+     <xsd:element name="LIFSK" type="n0:char2"/>
+     <xsd:element name="ABGRU" type="n0:char2"/>
+     <xsd:element name="AUGRU" type="tns:char3"/>
+     <xsd:element name="Kdkg1" type="tns:char2"/>
+     <xsd:element name="Zzcampana" type="tns:char7"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="ZssdPedidoCond">
+    <xsd:sequence>
+     <xsd:element name="Zzpossf" type="n0:char18"/>
+     <xsd:element name="Kschl" type="n0:char4"/>
+     <xsd:element name="Kmein" type="n0:unit3"/>
+     <xsd:element name="Kbetr" type="n0:curr11.2"/>
+     <xsd:element name="Kpein" type="n0:decimal5.0"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="ZssdPosSfSap">
+    <xsd:sequence>
+     <xsd:element name="Zzpossf" type="n0:char18"/>
+     <xsd:element name="Posnr" type="n0:numeric6"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="Bapiret2">
+    <xsd:sequence>
+     <xsd:element name="Type" type="n0:char1"/>
+     <xsd:element name="Id" type="n0:char20"/>
+     <xsd:element name="Number" type="n0:numeric3"/>
+     <xsd:element name="Message" type="n0:char220"/>
+     <xsd:element name="LogNo" type="n0:char20"/>
+     <xsd:element name="LogMsgNo" type="n0:numeric6"/>
+     <xsd:element name="MessageV1" type="n0:char50"/>
+     <xsd:element name="MessageV2" type="n0:char50"/>
+     <xsd:element name="MessageV3" type="n0:char50"/>
+     <xsd:element name="MessageV4" type="n0:char50"/>
+     <xsd:element name="Parameter" type="n0:char32"/>
+     <xsd:element name="Row" type="xsd:int"/>
+     <xsd:element name="Field" type="n0:char30"/>
+     <xsd:element name="System" type="n0:char10"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="ZssdPedidoCondTab">
+    <xsd:sequence>
+     <xsd:element name="item" type="tns:ZssdPedidoCond" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="ZssdPosSfSapTab">
+    <xsd:sequence>
+     <xsd:element name="item" type="tns:ZssdPosSfSap" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="Bapiret2Tab">
+    <xsd:sequence>
+     <xsd:element name="item" type="tns:Bapiret2" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:element name="ZSdAltaPedido">
+    <xsd:complexType>
+     <xsd:sequence>
+      <xsd:element name="ICabecera" type="tns:ZssdPedidoCab"/>
+      <xsd:element name="TCondiciones" type="tns:ZssdPedidoCondTab"/>
+      <xsd:element name="TPosiciones" type="n0:ZSSD_PEDIDO_POS_TAB"/>
+     </xsd:sequence>
+    </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="ZSdAltaPedidoResponse">
+    <xsd:complexType>
+     <xsd:sequence>
+      <xsd:element name="ENroPedido" type="n0:char10"/>
+      <xsd:element name="ESubrc" type="xsd:int"/>
+      <xsd:element name="TRelPos" type="tns:ZssdPosSfSapTab"/>
+      <xsd:element name="TReturn" type="tns:Bapiret2Tab"/>
+     </xsd:sequence>
+    </xsd:complexType>
+   </xsd:element>
+  </xsd:schema>
+ </wsdl:types>
+ <wsdl:message name="ZSdAltaPedido">
+  <wsdl:part name="parameters" element="tns:ZSdAltaPedido"/>
+ </wsdl:message>
+ <wsdl:message name="ZSdAltaPedidoResponse">
+  <wsdl:part name="parameter" element="tns:ZSdAltaPedidoResponse"/>
+ </wsdl:message>
+ <wsdl:portType name="Z_SD_ALTA_PEDIDO">
+  <wsdl:operation name="ZSdAltaPedido">
+   <wsdl:input message="tns:ZSdAltaPedido"/>
+   <wsdl:output message="tns:ZSdAltaPedidoResponse"/>
+  </wsdl:operation>
+ </wsdl:portType>
+ <wsdl:binding name="Z_SD_ALTA_PEDIDO" type="tns:Z_SD_ALTA_PEDIDO">
+  <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+  <wsdl:operation name="ZSdAltaPedido">
+   <soap:operation soapAction="" style="document"/>
+   <wsdl:input>
+    <soap:body use="literal"/>
+   </wsdl:input>
+   <wsdl:output>
+    <soap:body use="literal"/>
+   </wsdl:output>
+  </wsdl:operation>
+ </wsdl:binding>
+ <wsdl:service name="Z_SD_ALTA_PEDIDO">
+  <wsdl:port name="Z_SD_ALTA_PEDIDO" binding="tns:Z_SD_ALTA_PEDIDO">
+   <soap:address location="http://VMDATAC11.of1.net:8000/sap/bc/srt/rfc/sap/z_sd_alta_pedido/300/z_sd_alta_pedido/z_sd_alta_pedido"/>
+  </wsdl:port>
+ </wsdl:service>
+</wsdl:definitions>
