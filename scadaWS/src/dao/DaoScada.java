@@ -29,7 +29,7 @@ public class DaoScada {
     public java.sql.Connection getConnection() throws ClassNotFoundException, SQLException {
         if (con == null) {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            con = java.sql.DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=SCADA_SAP;user=sap;password=Tecno2015;");
+            con = java.sql.DriverManager.getConnection("jdbc:sqlserver://192.168.50.95:1433;databaseName=SCADA_SAP;user=sap;password=Tecno2015;");
         } else {
             new ConnectionErrorException();
         }
