@@ -89,7 +89,7 @@ public class FileReaderConfiguration {
 	public void getConfiguration() {
 		FileInputStream fstream = null;
 		try {
-			fstream = new FileInputStream("c:/Users/acordoba/Documents/configuracion.txt");
+			fstream = new FileInputStream("c:/configuracion.txt");
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
